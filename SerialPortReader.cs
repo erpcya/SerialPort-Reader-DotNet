@@ -50,8 +50,16 @@ namespace SerialPortReader {
             _serialPort.WriteTimeout = 500;
             //  Open Port
             _serialPort.Open();
+            // X
+            // _serialPort.Write(new byte[] { 2, 27, 57, 28, 88, 28, 84, 3, 48, 49, 51, 68 }, 0, 12);
+            // Status
+            byte[] data = new byte[] { 2, 122, 56, 28, 78, 3, 48, 49, 50, 49 };
+            for (int i = 0; i < 10; i++) {
+                Console.WriteLine("Sending Data {0}", data);
+                _serialPort.Write(data, 0, data.Length);
+                Thread.Sleep(1000);
+            }
             _continue = true;
-
             readThread.Start();
             readThread.Join();
             _serialPort.Close();
@@ -60,7 +68,13 @@ namespace SerialPortReader {
         private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e) {
             int milliseconds = 5;
             Thread.Sleep(milliseconds);
-            Console.WriteLine("{0}", _serialPort.ReadExisting());
+            String input = _serialPort.ReadExisting();
+            Console.WriteLine("{0}", input);
+            Console.WriteLine("---------------------------------------------------------");
+            for (int i = 0; i < input.Length; i++) {
+                Console.Write("{0}{1}:{2}", (i > 0 && i < input.Length? "|": ""), input[i], (int)input[i]);
+            }
+            Console.WriteLine("\n---------------------------------------------------------");
         }
 
         //  Wait for
