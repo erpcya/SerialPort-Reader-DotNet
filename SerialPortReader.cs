@@ -44,6 +44,7 @@ namespace SerialPortReader {
             _serialPort.DataBits = 8;
             _serialPort.StopBits = StopBits.One;
             _serialPort.Handshake = Handshake.None;
+            _serialPort.RtsEnable = true;
             _serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
             // Set the read/write timeouts
             _serialPort.ReadTimeout = 500;
@@ -73,6 +74,11 @@ namespace SerialPortReader {
             Console.WriteLine("---------------------------------------------------------");
             for (int i = 0; i < input.Length; i++) {
                 Console.Write("{0}{1}:{2}", (i > 0 && i < input.Length? "|": ""), input[i], (int)input[i]);
+            }
+            Console.WriteLine("\n---------------------------------------------------------");
+            Console.WriteLine("---------------------------------------------------------");
+            for (int i = 0; i < input.Length; i++) {
+                Console.Write("{0}{1}", (i > 0 && i < input.Length? "|": ""), (int)input[i]);
             }
             Console.WriteLine("\n---------------------------------------------------------");
         }
