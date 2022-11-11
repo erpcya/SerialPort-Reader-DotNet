@@ -40,10 +40,10 @@ namespace SerialPortReader {
             // Allow the user to set the appropriate properties.
             _serialPort.PortName = args[0];//"/dev/ttyUSB0";
             _serialPort.BaudRate = 9600;
-            // _serialPort.Parity = _scaleValues.GetParity();
-            // _serialPort.DataBits = _scaleValues.GetDataBits();
-            // _serialPort.StopBits = _scaleValues.GetStopBits();
-            // _serialPort.Handshake = _scaleValues.GetFlowControl();
+            _serialPort.Parity = Parity.None;
+            _serialPort.DataBits = 8;
+            _serialPort.StopBits = StopBits.One;
+            _serialPort.Handshake = Handshake.None;
             _serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
             // Set the read/write timeouts
             _serialPort.ReadTimeout = 500;
