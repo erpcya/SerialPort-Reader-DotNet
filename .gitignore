@@ -1,0 +1,7 @@
+.dll
+/bin/
+/Debug/
+/publish/
+/obj/
+.project
+.classpath
